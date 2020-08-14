@@ -101,15 +101,7 @@ type DexTypeList struct {
 	List []*DexTypeItem
 }
 
-type DexCode struct {
-	RegistersSize uint16
-	InsSize       uint16
-	OutsSize      uint16
-	TriesSize     uint16
-	DebugInfoOff  uint32
-	InsnsSize     uint32
-	Insns         []uint16
-}
+
 type DexTry struct {
 	StartAddr  uint32
 	InsnCount  uint16

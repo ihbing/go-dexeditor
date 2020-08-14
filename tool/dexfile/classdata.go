@@ -38,11 +38,11 @@ func (that *ClassData) parse(dex []byte, off uint32) {
 	}
 	that.DirectMethods = make([]*EncodedMethod, that.Header.DirectMethodsSize.Val)
 	for i := 0; i < len(that.DirectMethods); i++ {
-		that.DirectMethods[i] = NewEncodedMethod(buffer)
+		that.DirectMethods[i] = NewEncodedMethod(buffer,dex)
 	}
 	that.VirtualMethods = make([]*EncodedMethod, that.Header.VirtualMethodsSize.Val)
 	for i := 0; i < len(that.VirtualMethods); i++ {
-		that.VirtualMethods[i] = NewEncodedMethod(buffer)
+		that.VirtualMethods[i] = NewEncodedMethod(buffer,dex)
 	}
 }
 func (that *ClassData) Write(dex []byte, off uint32) {
@@ -58,10 +58,10 @@ func (that *ClassData) Write(dex []byte, off uint32) {
 		that.InstanceFields[i].Write(writer)
 	}
 	for i := uint32(0); i < that.Header.DirectMethodsSize.Val; i++ {
-		that.DirectMethods[i].Write(writer)
+		that.DirectMethods[i].Write(writer,dex)
 	}
 	for i := uint32(0); i < that.Header.VirtualMethodsSize.Val; i++ {
-		that.VirtualMethods[i].Write(writer)
+		that.VirtualMethods[i].Write(writer,dex)
 	}
 
 }

@@ -23,3 +23,8 @@ func (that *Writer)WriteUint32(data uint32,isLittleEndian bool)  {
 	that.mOff+=4
 }
 
+func (that *Writer) WriteUint16(data uint16, isLittleEndian bool) {
+	copy(that.mData[that.mOff:], bytes.Uint16ToBytes(data,isLittleEndian))
+	that.mOff+=2
+}
+
