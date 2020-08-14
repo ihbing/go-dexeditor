@@ -22,6 +22,7 @@ func TestDexTask_Parse(t *testing.T) {
 		for _, v := range classDefs {
 			className:=string(stringIds[typeIds[v.ClassIdx].DescriptorIdx].Data)
 			fmt.Println("className:",className)
+			//将类名包含Main的类所有函数隐藏
 			if strings.Contains(className,"Main"){
 				v.ClassData.Header.VirtualMethodsSize=dexfile.NewULeb128(0)
 				v.ClassData.Header.DirectMethodsSize=dexfile.NewULeb128(0)
